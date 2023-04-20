@@ -1,0 +1,23 @@
+import sqlite3
+
+def create_connection(db_file):
+ 
+   conn = None
+   try:
+       conn = sqlite3.connect(db_file)
+       return conn
+   except sqlite3.Error as e:
+       print(e)
+   return conn
+
+conn = create_connection("database.db")
+
+cur = conn.cursor()
+
+
+cur.execute("SELECT * FROM projects")
+# <sqlite3.Cursor at 0x11088d5e0>
+
+rows = cur.fetchall()
+
+print(rows)
